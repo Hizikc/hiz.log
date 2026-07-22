@@ -1,36 +1,48 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Мои Проекты</title>
+    <title>hiz.log | Projects</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <div style="width: 100%; max-width: 1000px;">
-        <a href="index.html" class="btn-back">← На главную</a>
-        <h1>Каталог разработок</h1>
-        <p>Выберите проект для детального ознакомления:</p>
+    <!-- Верхний блок с кнопкой назад и заголовком -->
+    <div class="projects-header">
+        <a href="/" class="btn-back">← На главную</a>
+        <h1>Мои проекты</h1>
+        <p>Здесь собраны актуальные версии софта и приватных скриптов.</p>
     </div>
 
-    <div class="grid">
-        <!-- Карточка Авто-установщика софта -->
-        <div class="card">
-            <div>
+    <!-- Сетка с карточками проектов -->
+    <div class="projects-grid">
+
+        <!-- Карточка 1 (Твой рабочий софт) -->
+        <div class="project-card">
+            <div class="card-content">
+                <div class="card-status status-active">Active</div>
                 <h3>Auto Soft Installer</h3>
-                <p>Утилита автоматизации на Python. Ставит нужный софт на чистую Windows, фиксит пути PATH и настраивает систему за один клик.</p>
+                <p>Утилита на Python для автоматической настройки чистой Windows, исправления путей PATH и развертывания софта.</p>
             </div>
-            <a href="pages/auto-installer/index.html" class="btn" style="text-align: center; margin-top: 15px;">Подробнее</a>
+            <!-- Ссылка ведет в папку проекта, как ты и хотел -->
+            <a href="/pages/sfc/index.html" class="btn-project">Подробнее →</a>
         </div>
 
-        <!-- Карточка проекта, которого еще нет (Заглушка) -->
-        <div class="card" style="opacity: 0.6;">
-            <div>
+        <!-- Карточка 2 (Заглушка для будущего проекта) -->
+        <div class="project-card">
+            <div class="card-content">
+                <div class="card-status status-dev">In Dev</div>
                 <h3>Secret Telegram Bot</h3>
-                <p>Приватный многофункциональный бот. Сейчас проект пишется с нуля. Пустые страницы выводить не будем — пока кнопка заблокирована.</p>
+                <p>Приватный многофункциональный бот. Сейчас проект находится в стадии активной разработки.</p>
             </div>
-            <a href="#" class="btn" style="text-align: center; margin-top: 15px; background: #0d0e11; color: #8b949e; cursor: not-allowed; pointer-events: none;">В разработке</a>
+            <!-- Делаем кнопку неактивной, пока проект пишется -->
+            <a href="#" class="btn-project btn-disabled">В разработке</a>
         </div>
+
     </div>
+
+    <!-- Подключаем твои готовые блоки через плагин инжекта -->
+    <load src="/blocks/feedback.html" />
+    <load src="/blocks/footer.html" />
 </body>
 </html>

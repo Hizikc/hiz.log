@@ -1,3 +1,9 @@
+@import 'feedback.css';
+@import 'footer.css';
+@import 'projects.css';
+
+
+
 /* Базовые сбросы */
 * {
     margin: 0;

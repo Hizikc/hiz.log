@@ -1,0 +1,22 @@
+/* Стили для подвала сайта (footer) */
+footer, .footer-block {
+    text-align: center;
+    margin-top: 50px;
+    padding: 20px 0;
+    width: 100%;
+}
+
+footer p, .footer-block p {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.4); /* Полупрозрачный белый, чтобы не отвлекал */
+    margin-bottom: 6px;
+    line-height: 1.4;
+}
+
+/* Версия сайта (v0.4.0) */
+footer .version, .footer-block .version {
+    display: inline-block;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.25);
+    margin-top: 5px;
+}

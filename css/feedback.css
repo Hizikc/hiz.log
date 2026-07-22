@@ -1,0 +1,101 @@
+/* Главный контейнер для карточек */
+.contacts-grid {
+    display: flex !important;
+    flex-direction: column !important; /* Включает режим столбца */
+    align-items: center !important;    /* Центрирует карточки по ширине */
+    gap: 20px !important;              /* Расстояние между карточками по вертикали */
+    margin-top: 40px !important;
+    margin-bottom: 40px !important;
+    width: 100% !important;
+}
+
+
+/* Сами карточки (делаем их как карточки проектов) */
+.contacts-group {
+    background: #130f22 !important; /* Темный фон карточки */
+    padding: 30px !important;
+    border-radius: 16px !important;
+    border: 1px solid rgba(168, 85, 247, 0.2) !important; /* Фиолетовая рамка */
+    min-width: 280px !important;
+    flex: 1 !important;
+    max-width: 400px !important;
+    box-sizing: border-box !important;
+    text-align: left !important; /* Текст внутри карточки прижат влево */
+}
+
+/* Заголовки внутри карточек */
+.contacts-group h3 {
+    font-size: 14px !important;
+    color: rgba(255, 255, 255, 0.5) !important;
+    margin-top: 0 !important;
+    margin-bottom: 20px !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1.5px !important;
+    font-family: sans-serif !important;
+}
+
+/* Контейнер, который держит кнопки строго в один ряд внутри карточки */
+.feedback-links {
+    display: flex !important;
+    gap: 15px !important;
+    justify-content: flex-start !important; /* Кнопки прижаты к левому краю */
+    flex-wrap: wrap !important;
+}
+
+/* Общие стили для ВСЕХ кнопок в блоке */
+.feedback-links a {
+    display: inline-block !important;
+    padding: 12px 24px !important;
+    background-color: #241e38 !important; /* Стандартный темный фон */
+    color: #ffffff !important;
+    text-decoration: none !important;
+    font-weight: 600 !important;
+    border-radius: 8px !important;
+    transition: all 0.3s ease !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    font-family: sans-serif !important;
+    font-size: 14px !important;
+
+}
+
+/* Эффект при наведении на обычные кнопки (Почта, GitHub, Discord) */
+.feedback-links a:hover {
+    background-color: #2e2647 !important;
+    transform: translateY(-2px) !important;
+    border-color: rgba(255, 255, 255, 0.2) !important;
+}
+/* Выстраиваем кнопки ровно по центру в один ряд */
+.feedback-buttons {
+    display: flex;
+    justify-content: center; /* Центруем по горизонтали */
+    gap: 16px;               /* Расстояние между кнопками */
+    margin-top: 20px;
+    width: 100%;
+}
+
+/* Принудительно делаем кнопки одинаковыми */
+.btn-link {
+    display: inline-block;
+    background:  #251e39;
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    text-align: center;
+
+    /* ЖЕСТКО ЗАДАЕМ ОДИНАКОВУЮ ШИРИНУ ОБОИМ КНОПКАМ */
+    width: 140px;
+    box-sizing: border-box;
+
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-link:hover {
+    background-color: #2e2647 !important;
+    transform: translateY(-2px) !important;
+    border-color: rgba(255, 255, 255, 0.2) !important;
+}
