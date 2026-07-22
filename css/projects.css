@@ -108,3 +108,15 @@
     border-color: #2c2c2e;
     cursor: not-allowed;
 }
+/* Кнопка для проектов в разработке, которые можно смотреть */
+.btn-project.btn-dev-view {
+    background: rgba(240, 135, 0, 0.1);
+    color: #f08700;
+    border-color: rgba(240, 135, 0, 0.3);
+}
+
+.btn-project.btn-dev-view:hover {
+    background: #f08700;
+    border-color: #f08700;
+    color: #fff;
+}

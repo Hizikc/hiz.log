@@ -17,29 +17,39 @@
     <!-- Сетка с карточками проектов -->
     <div class="projects-grid">
 
-        <!-- Карточка 1 (Твой рабочий софт) -->
+        <!-- Вариант 1: Полностью готов и работает -->
         <div class="project-card">
             <div class="card-content">
                 <div class="card-status status-active">Active</div>
                 <h3>Auto Soft Installer</h3>
                 <p>Утилита на Python для автоматической настройки чистой Windows, исправления путей PATH и развертывания софта.</p>
             </div>
-            <!-- Ссылка ведет в папку проекта, как ты и хотел -->
             <a href="/pages/sfc/index.html" class="btn-project">Подробнее →</a>
         </div>
 
-        <!-- Карточка 2 (Заглушка для будущего проекта) -->
+        <!-- Вариант 2: В разработке, НО посмотреть МОЖНО (Твоя корректива) -->
+        <div class="project-card">
+            <div class="card-content">
+                <div class="card-status status-dev">In Dev</div>
+                <h3>Next-Gen Clicker</h3>
+                <p>Новый кликер с кастомным GUI. Код еще пишется, но вы уже можете посмотреть текущий ченджлог и скриншоты разработки.</p>
+            </div>
+            <!-- Кнопка работает и ведет на страницу этого проекта -->
+            <a href="/pages/clicker/index.html" class="btn-project btn-dev-view">Посмотреть прогресс →</a>
+        </div>
+
+        <!-- Вариант 3: В разработке, смотреть НЕЛЬЗЯ (Кнопка заблокирована) -->
         <div class="project-card">
             <div class="card-content">
                 <div class="card-status status-dev">In Dev</div>
                 <h3>Secret Telegram Bot</h3>
-                <p>Приватный многофункциональный бот. Сейчас проект находится в стадии активной разработки.</p>
+                <p>Приватный многофункциональный бот. Проект на ранней стадии, доступ к логам пока закрыт.</p>
             </div>
-            <!-- Делаем кнопку неактивной, пока проект пишется -->
             <a href="#" class="btn-project btn-disabled">В разработке</a>
         </div>
 
     </div>
+
 
     <!-- Подключаем твои готовые блоки через плагин инжекта -->
     <load src="/blocks/feedback.html" />
