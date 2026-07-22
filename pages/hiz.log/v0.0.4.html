@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hiz.log | v0.0.4</title>
+    <!-- Тянем стили из корня -->
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/project-view.css">
+
+</head>
+<body>
+
+    <!-- Одна большая карточка-контейнер для всего контента проекта -->
+    <div class="project-view-card">
+
+        <!-- Кнопка назад -->
+        <a href="/projects.html" class="btn-back">← К проектам</a>
+
+        <!-- Шапка проекта с версией -->
+        <div class="project-view-header">
+            <h1>hiz.log <span class="badge-v">v0.0.4</span></h1>
+            <p class="release-date">Последнее обновление: 23 июля 2026 г.</p>
+        </div>
+
+        <!-- Описание релиза -->
+        <div class="project-view-body" style='color: #ffffff' ;>
+            <p>Сайт для отслеживания версий.</p>
+
+            <h3>Что изменилось в этом патче:</h3>
+            <ul class="patch-notes-list">
+                <li>Вторая страница обновлена.</li>
+                <!--<li>.</li>
+                <li>.</li>-->
+            </ul>
+        </div>
+
+        <!-- Галерея скриншотов этой версии -->
+        <h2>Скриншоты версии:</h2>
+        <div class="project-view-gallery">
+            <!-- Заменишь на свои скрины, когда закинешь в проект -->
+            <img src="/pages/hiz.log/images/v0.0.4.png" alt="Интерфейс программы">
+            <p class="image-disclaimer" style="color: #ffffff;" >* Элементы интерфейса и данные на скриншоте приведены исключительно для примера</p>
+        </div>
+
+        <!-- Блок кнопок-перекидов на прошлые версии -->
+        <div class="project-view-footer">
+            <h2>Предыдущие версии проекта:</h2>
+            <div class="versions-links-list">
+
+
+                <!-- Кнопка ведет на прошлую версию v0.0.3 -->
+                <a href="/pages/hiz.log/v0.0.3.html" class="version-link-item">
+                    <span class="v-num-tag">v0.0.3</span>
+                    <span class="v-text-info">Добавлена вторая страница.</span>
+                </a>
+
+                <!-- Кнопка ведет на прошлую версию v0.0.2 -->
+                <a href="/pages/hiz.log/v0.0.2.html" class="version-link-item">
+                    <span class="v-num-tag">v0.0.2</span>
+                    <span class="v-text-info">Добавлен блок связи и подвал сайта.</span>
+                </a>
+
+                <!-- Кнопка ведет на прошлую версию v0.0.1 -->
+                <a href="/pages/hiz.log/v0.0.1.html" class="version-link-item">
+                    <span class="v-num-tag">v0.0.1</span>
+                    <span class="v-text-info">Добавлено приветсвеное окно.</span>
+                </a>
+
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Инжекты контактов и подвала -->
+    <load src="/blocks/feedback.html" />
+    <load src="/blocks/footer.html" />
+    <script type="module" src="/main.js"></script>
+
+
+</body>
+</html>

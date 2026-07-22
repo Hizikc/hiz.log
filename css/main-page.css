@@ -1,0 +1,44 @@
+/* Контейнер главной */
+.main-container {
+    max-width: 750px;
+    width: 100%;
+    background: rgba(32, 32, 36, 0.4);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 40px;
+    border-radius: 16px;
+    text-align: center;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+}
+
+.main-container h1 {
+    font-size: 2.6rem;
+    color: #fff;
+    margin-bottom: 15px;
+}
+
+.main-container p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #8d8d99;
+}
+
+.btn-main {
+    display: inline-block;
+    background-color: #238636;
+    color: #fff;
+    padding: 16px 32px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.15rem;
+    transition: all 0.2s ease;
+    margin-top: 25px;
+    box-shadow: 0 4px 12px rgba(35, 134, 54, 0.2);
+}
+
+.btn-main:hover {
+    background-color: #2ea44f;
+    transform: translateY(-2px);
+}

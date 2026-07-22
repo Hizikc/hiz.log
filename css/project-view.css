@@ -1,0 +1,146 @@
+/* Огромная плита-блок для просмотра проекта */
+.project-view-card {
+    background: rgba(32, 32, 36, 0.4) !important;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    padding: 40px;
+    max-width: 850px;
+    width: 100%;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+    margin-bottom: 30px;
+}
+
+/* Шапка внутри карточки */
+.project-view-header {
+    margin-bottom: 25px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 20px;
+}
+
+/* Зеленая плашка с версией */
+.badge-v {
+    font-size: 1.1rem;
+    background: rgba(46, 164, 79, 0.15);
+    color: #2ea44f;
+    padding: 4px 12px;
+    border-radius: 6px;
+    vertical-align: middle;
+    margin-left: 10px;
+    display: inline-block;
+}
+
+.release-date {
+    font-size: 0.95rem;
+    color: #8d8d99;
+    margin-top: 8px;
+}
+
+/* Списки патчноутов */
+.project-view-body h3 {
+    font-size: 1.2rem;
+    color: #fff;
+    margin: 25px 0 12px 0;
+}
+
+.patch-notes-list {
+    margin-left: 20px;
+    color: #8d8d99;
+    margin-bottom: 35px;
+}
+
+.patch-notes-list li {
+    margin-bottom: 8px;
+    line-height: 1.6;
+}
+
+/* Сетка для картинок */
+.project-view-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 20px;
+    margin-top: 15px;
+    margin-bottom: 40px;
+}
+
+.project-view-gallery img {
+    width: 100%;
+    border-radius: 8px;
+    border: 1px solid #323238;
+    display: block;
+}
+
+/* Кнопки переключения версий под скринами */
+.project-view-footer {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 30px;
+}
+
+.versions-links-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 15px;
+}
+
+.version-link-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: #1c1c1e !important;
+    border: 1px solid #2c2c2e !important;
+    padding: 16px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    color: #fff !important;
+    transition: all 0.2s ease;
+}
+
+.version-link-item:hover {
+    background: #29292e !important;
+    border-color: rgba(255, 255, 255, 0.25) !important;
+    transform: translateX(4px);
+}
+
+.v-num-tag {
+    font-weight: bold;
+    color: #58a6ff !important;
+    background: rgba(56, 139, 253, 0.1);
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+}
+
+.v-text-info {
+    color: #8d8d99 !important;
+}
+
+.version-link-item:hover .v-text-info {
+    color: #fff !important;
+}
+/* Фикс цвета заголовков внутри карточки проекта */
+.project-view-card h2 {
+    color: #ffffff !important; /* Делаем текст чисто белым */
+    font-size: 1.4rem;
+    margin-top: 35px;
+    margin-bottom: 15px;
+}
+/* Глобальный фикс цветов для всей страницы логов */
+h1, h2, h3 {
+    color: #ffffff !important;
+}
+
+/* Фикс для списков изменений, если текст в li тоже потемнел */
+.patch-notes-list li {
+    color: #8d8d99 !important;
+}
+/* Полностью перекрашиваем все заголовки внутри этой страницы в белый */
+.project-view-card h1,
+.project-view-card h2,
+.project-view-card h3,
+.project-view-body h1,
+.project-view-body h2,
+.project-view-body h3 {
+    color: #ffffff !important;
+}
