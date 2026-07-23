@@ -41,3 +41,18 @@
     border-color: #f08700 !important;
     box-shadow: 0 0 15px rgba(240, 135, 0, 0.4) !important; /* Аккуратное свечение ТОЛЬКО при ховере */
 }
+/* Кнопка готового проекта в обычном состоянии — темная с зеленым контуром */
+.btn-project.btn-active-view {
+    background-color: rgba(255, 255, 255, 0.03) !important;
+    color: #2ea44f !important; /* Твой зеленый цвет */
+    border: 1px solid rgba(46, 164, 79, 0.3) !important; /* Зеленая рамка */
+    box-shadow: none !important;
+}
+
+/* Ховер для готового проекта — заливается зеленым со свечением */
+.btn-project.btn-active-view:hover {
+    background-color: #2ea44f !important;
+    color: #ffffff !important;
+    border-color: #2ea44f !important;
+    box-shadow: 0 0 15px rgba(46, 164, 79, 0.4) !important; /* Свечение только при наведении */
+}
