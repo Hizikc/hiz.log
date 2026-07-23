@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite'
 import { resolve } from 'path'
 import fs from 'fs'
+import inject from 'vite-plugin-html-inject' // ПОДСТАВЬ СЮДА СВОЙ ИМПОРТ ПЛАГИНА (как было у тебя на 25 строчке)
 
 // Автоматически собираем все HTML-страницы из папки pages
 const getPages = () => {
@@ -12,7 +13,6 @@ const getPages = () => {
 
   files.forEach(file => {
     const filePath = resolve(pagesDir, file)
-    // Проверяем, что это файл, а не папка, и что он заканчивается на .html
     if (fs.statSync(filePath).isFile() && file.endsWith('.html')) {
       const name = file.replace('.html', '')
       pages[name] = filePath
@@ -21,22 +21,25 @@ const getPages = () => {
   return pages
 }
 
-
 export default defineConfig({
+  // Возвращаем твой плагин для вставок <load src="...">
+  plugins: [
+    inject()
+  ],
   // Настройки локального сервера
   server: {
     host: '127.0.0.1',
     port: 3000,
-    open: true // Автоматически откроет браузер при старте
+    open: true
   },
   // Настройки сборки
   build: {
-    outDir: 'docs', // Собирает всё в папку docs
-    emptyOutDir: true, // Очищает docs перед новой сборкой
+    outDir: 'docs',
+    emptyOutDir: true,
     rollupOptions: {
       input: {
-        main: resolve(__dirname, 'index.html'), // Главная страница в корне
-        ...getPages() // Автоматически подмешивает все остальные страницы из /pages
+        main: resolve(__dirname, 'index.html'),
+        ...getPages()
       }
     }
   }
