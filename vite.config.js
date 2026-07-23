@@ -1,9 +1,9 @@
 import { defineConfig } from 'vite'
 import { resolve } from 'path'
 import fs from 'fs'
-import inject from 'vite-plugin-html-inject' // ПОДСТАВЬ СЮДА СВОЙ ИМПОРТ ПЛАГИНА (как было у тебя на 25 строчке)
+import inject from 'vite-plugin-html-inject' // Твой импорт плагина для вставок <load src="...">
 
-// Автоматически собираем все HTML-страницы из папки pages
+// Функция корректного получения путей для Vite
 const getPages = () => {
   const pagesDir = resolve(__dirname, 'pages')
   if (!fs.existsSync(pagesDir)) return {}
@@ -13,33 +13,40 @@ const getPages = () => {
 
   files.forEach(file => {
     const filePath = resolve(pagesDir, file)
+    // Строго отсекаем папки (как hiz.html), берем только файлы .html
     if (fs.statSync(filePath).isFile() && file.endsWith('.html')) {
       const name = file.replace('.html', '')
-      pages[name] = filePath
+      // Передаем относительный путь от корня, чтобы Vite прогонял файл через плагины
+      pages[name] = `pages/${file}`
     }
   })
   return pages
 }
 
 export default defineConfig({
-  // Возвращаем твой плагин для вставок <load src="...">
+  // Базовый путь для корректных ссылок на GitHub Pages
+  base: '/hiz.log/',
+
+  // Подключаем твой плагин для сборки вставок
   plugins: [
     inject()
   ],
+
   // Настройки локального сервера
   server: {
     host: '127.0.0.1',
     port: 3000,
     open: true
   },
-  // Настройки сборки
+
+  // Настройки сборки в папку docs
   build: {
     outDir: 'docs',
-    emptyOutDir: true,
+    emptyOutDir: true, // Чистим папку перед каждым билдом
     rollupOptions: {
       input: {
-        main: resolve(__dirname, 'index.html'),
-        ...getPages()
+        main: resolve(__dirname, 'index.html'), // Главная страница
+        ...getPages() // Все остальные страницы из папки pages
       }
     }
   }
