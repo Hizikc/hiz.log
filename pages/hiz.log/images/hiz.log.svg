@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="_Слой_1" data-name="Слой 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fff;
+        font-family: Arial-Black, Arial;
+        font-size: 250px;
+        font-weight: 800;
+        stroke: #000;
+        stroke-miterlimit: 10;
+      }
+
+      .cls-2 {
+        fill: #6366f1;
+      }
+    </style>
+  </defs>
+  <rect class="cls-2" width="1920.36" height="1080"/>
+  <text class="cls-1" transform="translate(515.84 630.24)"><tspan x="0" y="0">hiz.log</tspan></text>
+</svg>
