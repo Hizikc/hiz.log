@@ -1,53 +1,58 @@
 import { defineConfig } from 'vite'
 import { resolve } from 'path'
 import fs from 'fs'
-import inject from 'vite-plugin-html-inject' // Твой импорт плагина для вставок <load src="...">
 
-// Функция корректного получения путей для Vite
-const getPages = () => {
-  const pagesDir = resolve(__dirname, 'pages')
-  if (!fs.existsSync(pagesDir)) return {}
+// Автоматически вытаскиваем первый попавшийся HTML плагин из твоего package.json
+const pkg = JSON.parse(fs.readFileSync(resolve(__dirname, 'package.json'), 'utf-8'))
+const pluginName = Object.keys({ ...pkg.dependencies, ...pkg.devDependencies })
+  .find(name => name.includes('html') || name.includes('inject') || name.includes('include'))
 
-  const files = fs.readdirSync(pagesDir)
-  const pages = {}
+// Динамически импортируем твой плагин
+let injectPlugin = () => ({ name: 'noop' })
+if (pluginName) {
+  const mod = await import(pluginName)
+  injectPlugin = mod.default || mod
+}
 
-  files.forEach(file => {
-    const filePath = resolve(pagesDir, file)
-    // Строго отсекаем папки (как hiz.html), берем только файлы .html
-    if (fs.statSync(filePath).isFile() && file.endsWith('.html')) {
-      const name = file.replace('.html', '')
-      // Передаем относительный путь от корня, чтобы Vite прогонял файл через плагины
-      pages[name] = `pages/${file}`
+// Собираем абсолютно все HTML-файлы, которые найдём
+const getAllHtmlInputs = () => {
+  const inputs = { main: resolve(__dirname, 'index.html') }
+
+  // Файлы из корня
+  fs.readdirSync(__dirname).forEach(file => {
+    if (file.endsWith('.html') && file !== 'index.html') {
+      inputs[file.replace('.html', '')] = resolve(__dirname, file)
     }
   })
-  return pages
+
+  // Файлы из /pages
+  const pagesDir = resolve(__dirname, 'pages')
+  if (fs.existsSync(pagesDir)) {
+    fs.readdirSync(pagesDir).forEach(file => {
+      const filePath = resolve(pagesDir, file)
+      if (fs.statSync(filePath).isFile() && file.endsWith('.html')) {
+        inputs[`pages/${file.replace('.html', '')}`] = filePath
+      }
+    })
+  }
+  return inputs
 }
 
 export default defineConfig({
-  // Базовый путь для корректных ссылок на GitHub Pages
   base: '/hiz.log/',
-
-  // Подключаем твой плагин для сборки вставок
   plugins: [
-    inject()
+    injectPlugin() // Твой плагин для работы <load src="...">
   ],
-
-  // Настройки локального сервера
   server: {
     host: '127.0.0.1',
     port: 3000,
     open: true
   },
-
-  // Настройки сборки в папку docs
   build: {
     outDir: 'docs',
-    emptyOutDir: true, // Чистим папку перед каждым билдом
+    emptyOutDir: true,
     rollupOptions: {
-      input: {
-        main: resolve(__dirname, 'index.html'), // Главная страница
-        ...getPages() // Все остальные страницы из папки pages
-      }
+      input: getAllHtmlInputs()
     }
   }
 })
