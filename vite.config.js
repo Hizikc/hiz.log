@@ -1,13 +1,23 @@
-import { defineConfig } from 'vite'
+import { defineConfig } from "vite";
+import htmlInject from "vite-plugin-html-inject";
+import fg from "fast-glob";
+import path from "node:path";
+
+const inputs = Object.fromEntries(
+  fg.sync(["**/*.html", "!dist/**", "!node_modules/**"]).map(file => [
+    path.relative(".", file).replace(/\.html$/, ""),
+    path.resolve(file)
+  ])
+);
 
 export default defineConfig({
-  base: '/hiz.log/',
-  server: {
-    host: '127.0.0.1',
-    port: 3000
-  },
+  plugins: [
+    htmlInject()
+  ],
+
   build: {
-    outDir: 'docs',
-    emptyOutDir: true
+    rollupOptions: {
+      input: inputs
+    }
   }
-})
+});
