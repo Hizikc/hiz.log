@@ -13,35 +13,32 @@ function findHtmlFiles(dirPath, baseKey = '') {
     const stat = fs.statSync(fullPath)
 
     if (stat.isDirectory()) {
-      // Передаем вложенность дальше
-      findHtmlFiles(fullPath, baseKey ? `${baseKey}/${file}` : file)
+      // Сохраняем имя папки целиком (например, "hiz.html" или "hiz.log")
+      const nextKey = baseKey ? `${baseKey}/${file}` : file
+      findHtmlFiles(fullPath, nextKey)
     } else if (file.endsWith('.html')) {
+      // Обрезаем расширение только у самого HTML-файла
       const name = file.replace('.html', '')
-      let finalKey = baseKey ? `${baseKey}/${name}` : name
-
-      // ХАК: Если ключ начинается с "pages/", вырезаем его к чертям
-      if (finalKey.startsWith('pages/')) {
-        finalKey = finalKey.replace('pages/', '')
-      }
+      const finalKey = baseKey ? `${baseKey}/${name}` : name
 
       inputs[finalKey] = fullPath
     }
   })
 }
 
-// Принудительно кидаем корень в корень билда
+// 1. Принудительно добавляем файлы из корня проекта
 inputs['index'] = resolve(__dirname, 'index.html')
 inputs['projects'] = resolve(__dirname, 'projects.html')
 
-// Сканируем остальную структуру
+// 2. Сканируем папку pages (она соберет и pages/hiz.log, и pages/hiz.html)
 const pagesDir = resolve(__dirname, 'pages')
 if (fs.existsSync(pagesDir)) {
-  findHtmlFiles(pagesDir)
+  findHtmlFiles(pagesDir, 'pages') // Передаем 'pages', чтобы сохранить эту папку в путях
 }
 
 export default defineConfig(({ command }) => {
   return {
-    base: command === 'serve' ? '/' : '/hiz.log/',
+    base: command === 'serve' ? '/' : '/hiz.log/', // Репозиторий на GitHub называется hiz.log
     plugins: [
       injectPlugin()
     ],
