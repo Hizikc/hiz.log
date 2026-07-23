@@ -2,46 +2,50 @@ import { defineConfig } from 'vite'
 import { resolve } from 'path'
 import fs from 'fs'
 
-// Автоматически вытаскиваем первый попавшийся HTML плагин из твоего package.json
+// Автоматически находим твой плагин для работы <load src="...">
 const pkg = JSON.parse(fs.readFileSync(resolve(__dirname, 'package.json'), 'utf-8'))
 const pluginName = Object.keys({ ...pkg.dependencies, ...pkg.devDependencies })
   .find(name => name.includes('html') || name.includes('inject') || name.includes('include'))
 
-// Динамически импортируем твой плагин
 let injectPlugin = () => ({ name: 'noop' })
 if (pluginName) {
   const mod = await import(pluginName)
   injectPlugin = mod.default || mod
 }
 
-// Собираем абсолютно все HTML-файлы, которые найдём
+// Эта функция ищет ВСЕ HTML-файлы, даже если они лежат глубоко в папках
 const getAllHtmlInputs = () => {
   const inputs = { main: resolve(__dirname, 'index.html') }
 
-  // Файлы из корня
+  // Ищем в корне
   fs.readdirSync(__dirname).forEach(file => {
     if (file.endsWith('.html') && file !== 'index.html') {
       inputs[file.replace('.html', '')] = resolve(__dirname, file)
     }
   })
 
-  // Файлы из /pages
-  const pagesDir = resolve(__dirname, 'pages')
-  if (fs.existsSync(pagesDir)) {
-    fs.readdirSync(pagesDir).forEach(file => {
-      const filePath = resolve(pagesDir, file)
-      if (fs.statSync(filePath).isFile() && file.endsWith('.html')) {
-        inputs[`pages/${file.replace('.html', '')}`] = filePath
+  // Ищем внутри папки pages и во всех её подпапках
+  const findHtmlFiles = (dir, baseKey = 'pages') => {
+    if (!fs.existsSync(dir)) return
+    fs.readdirSync(dir).forEach(file => {
+      const fullPath = resolve(dir, file)
+      if (fs.statSync(fullPath).isDirectory()) {
+        findHtmlFiles(fullPath, `${baseKey}/${file}`) // Заходим внутрь папки
+      } else if (file.endsWith('.html')) {
+        const name = file.replace('.html', '')
+        inputs[`${baseKey}/${name}`] = fullPath // Забираем файл
       }
     })
   }
+
+  findHtmlFiles(resolve(__dirname, 'pages'))
   return inputs
 }
 
 export default defineConfig({
-  base: '/hiz.log/',
+  base: '/hiz.log/', // Путь для GitHub Pages
   plugins: [
-    injectPlugin() // Твой плагин для работы <load src="...">
+    injectPlugin() // Запускаем твой плагин вставок
   ],
   server: {
     host: '127.0.0.1',
@@ -49,10 +53,10 @@ export default defineConfig({
     open: true
   },
   build: {
-    outDir: 'docs',
+    outDir: 'docs', // Собираем в docs
     emptyOutDir: true,
     rollupOptions: {
-      input: getAllHtmlInputs()
+      input: getAllHtmlInputs() // Передаем все найденные страницы
     }
   }
 })
