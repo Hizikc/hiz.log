@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hiz.html | v1.0.1</title>
+    <!-- Тянем стили из корня -->
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/project-view.css">
+
+</head>
+<body>
+
+    <!-- Одна большая карточка-контейнер для всего контента проекта -->
+    <div class="project-view-card">
+
+        <!-- Кнопка назад -->
+        <a href="/projects.html" class="btn-back">← К проектам</a>
+
+        <!-- Шапка проекта с версией -->
+        <div class="project-view-header">
+            <h1>hiz.html <span class="badge-v">v1.0.1</span></h1>
+            <p class="release-date">Последнее обновление: 23 июля 2026 г.</p>
+        </div>
+
+        <!-- Описание релиза -->
+        <div class="project-view-body" style='color: #ffffff' ;>
+            <p>hiz.html</p>
+
+            <!--<h3>Что изменилось в этом патче:</h3>-->
+            <ul class="patch-notes-list">
+                <li>Добавил карточку hiz.log .</li>
+                <!--<li>.</li>
+                <li>.</li>-->
+            </ul>
+        </div>
+
+        <!-- Галерея скриншотов этой версии -->
+        <h2>Скриншоты версии:</h2>
+        <div class="project-view-gallery">
+            <!-- Заменишь на свои скрины, когда закинешь в проект -->
+            <img src="/pages/hiz.html/images/v1.0.1.png" alt="Интерфейс программы">
+            <!-- -- <p class="image-disclaimer" style="color: #ffffff;" >* Элементы интерфейса и данные на скриншоте приведены исключительно для примера</p>-->
+        </div>
+
+        <!-- Блок кнопок-перекидов на прошлые версии -->
+        <div class="project-view-footer">
+            <h2>Предыдущие версии проекта:</h2>
+            <div class="versions-links-list">
+
+                <!-- Кнопка ведет на прошлую версию v1.0.0 -->
+                <a href="/pages/hiz.html/v1.0.0.html" class="version-link-item">
+                    <span class="v-num-tag">v1.0.0</span>
+                    <span class="v-text-info">Добавлено приветсвеное окно.</span>
+                </a>
+
+
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Инжекты контактов и подвала -->
+    <load src="/blocks/feedback.html" />
+    <load src="/blocks/footer.html" />
+    <script type="module" src="/main.js"></script>
+
+
+</body>
+</html>
